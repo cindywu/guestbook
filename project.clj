@@ -39,7 +39,9 @@
   :migratus {:store :database}
 
   :plugins [[lein-environ "1.0.1"]
-            [migratus-lein "0.2.1"]]
+            [migratus-lein "0.2.1"]
+            [lein-heroku "0.5.3"]]
+
   :profiles
   {:uberjar {:omit-source true
              :env {:production true}
@@ -68,4 +70,11 @@
                         :port       3001
                         :nrepl-port 7001}}
    :profiles/dev {}
-   :profiles/test {}})
+   :profiles/test {}}
+
+   :heroku {
+    :app-name "fierce-depths-26513"
+    :jdk-version "1.8"
+    :include-files ["target/guestbook.jar"]
+    :process-types {"web" "java -jar target/guestbook.jar"}}
+   )
